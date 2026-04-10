@@ -340,6 +340,291 @@ function IconXCircle() {
   );
 }
 
+/* ══════════════════════ IPHONE MOCKUP ══════════════════════ */
+
+function IPhoneFrame({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+  return (
+    <div className={`relative mx-auto ${className}`} style={{ width: 220 }}>
+      <div className="absolute -inset-4 rounded-[40px] bg-aurix-gold/5 blur-2xl" />
+      <div className="relative overflow-hidden rounded-[28px] border-2 border-white/10 bg-[#0a0a0b] p-1.5 shadow-[0_0_40px_-8px_rgba(201,162,74,0.2)]">
+        <div className="absolute left-1/2 top-2.5 z-20 h-[18px] w-[80px] -translate-x-1/2 rounded-full bg-[#0a0a0b]" />
+        <div className="overflow-hidden rounded-[22px] bg-[#0d0e10]">
+          {children}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function PhoneDashboard() {
+  return (
+    <IPhoneFrame>
+      <div className="px-3 pb-4 pt-8" style={{ minHeight: 420 }}>
+        {/* Status bar */}
+        <div className="mb-3 flex items-center justify-between text-[7px] text-white/40">
+          <span>9:41</span>
+          <div className="flex gap-1">
+            <svg width="10" height="7" viewBox="0 0 10 7"><rect x="0" y="4" width="2" height="3" rx="0.5" fill="white" opacity="0.4"/><rect x="3" y="2" width="2" height="5" rx="0.5" fill="white" opacity="0.4"/><rect x="6" y="0" width="2" height="7" rx="0.5" fill="white" opacity="0.4"/></svg>
+            <svg width="14" height="7" viewBox="0 0 14 7"><rect x="0" y="0" width="12" height="7" rx="1.5" stroke="white" strokeWidth="0.6" fill="none" opacity="0.4"/><rect x="12.5" y="2" width="1.5" height="3" rx="0.5" fill="white" opacity="0.4"/><rect x="1" y="1" width="8" height="5" rx="1" fill="#3ba78a"/></svg>
+          </div>
+        </div>
+
+        {/* Greeting */}
+        <p className="text-[8px] text-white/40">Welcome back</p>
+        <p className="text-[10px] font-semibold text-white/90">Portfolio Overview</p>
+
+        {/* Balance card */}
+        <div className="mt-2 rounded-xl bg-gradient-to-br from-[#1a1510] to-[#0d0e10] p-3 border border-[#c9a24a]/15">
+          <p className="text-[7px] uppercase tracking-wider text-[#c9a24a]/60">Total balance</p>
+          <p className="mt-0.5 text-[18px] font-bold text-white">$12,847.<span className="text-white/40">62</span></p>
+          <div className="mt-1 flex items-center gap-1">
+            <span className="text-[7px] font-semibold text-[#3ba78a]">+4.2%</span>
+            <span className="text-[7px] text-white/30">24h</span>
+          </div>
+
+          {/* Mini chart */}
+          <svg viewBox="0 0 150 30" className="mt-2 w-full" height="28">
+            <defs>
+              <linearGradient id="pcg" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="#c9a24a" stopOpacity="0.3" />
+                <stop offset="100%" stopColor="#c9a24a" stopOpacity="0" />
+              </linearGradient>
+            </defs>
+            <path d="M0 25 Q10 22 20 20 T40 18 T60 22 T80 14 T100 16 T120 8 T150 5 V30 H0 Z" fill="url(#pcg)" />
+            <path d="M0 25 Q10 22 20 20 T40 18 T60 22 T80 14 T100 16 T120 8 T150 5" fill="none" stroke="#c9a24a" strokeWidth="1.2" />
+          </svg>
+        </div>
+
+        {/* Quick actions */}
+        <div className="mt-3 grid grid-cols-3 gap-1.5">
+          {[
+            { icon: "↑", label: "Deposit", color: "#3ba78a" },
+            { icon: "↓", label: "Withdraw", color: "#c9a24a" },
+            { icon: "⟳", label: "Swap", color: "#b53333" },
+          ].map((a) => (
+            <div key={a.label} className="flex flex-col items-center gap-1 rounded-lg bg-white/[0.03] py-2">
+              <div className="flex h-5 w-5 items-center justify-center rounded-full text-[8px]" style={{ background: `${a.color}20`, color: a.color }}>{a.icon}</div>
+              <span className="text-[6px] text-white/40">{a.label}</span>
+            </div>
+          ))}
+        </div>
+
+        {/* Holdings */}
+        <p className="mt-3 text-[8px] font-semibold text-white/50">Holdings</p>
+        {[
+          { name: "$YUEJIN", amount: "45,200", usd: "$8,136.00", change: "+12.4%", pos: true },
+          { name: "USDT", amount: "2,400.00", usd: "$2,400.00", change: "+0.0%", pos: true },
+          { name: "SOL", amount: "14.8", usd: "$2,311.62", change: "+2.1%", pos: true },
+        ].map((h) => (
+          <div key={h.name} className="mt-1.5 flex items-center justify-between rounded-lg bg-white/[0.02] px-2 py-1.5 border border-white/[0.04]">
+            <div className="flex items-center gap-1.5">
+              <div className="h-4 w-4 rounded-full bg-gradient-to-br from-[#c9a24a]/40 to-[#8e6c30]/40" />
+              <div>
+                <p className="text-[8px] font-semibold text-white/80">{h.name}</p>
+                <p className="text-[6px] text-white/30">{h.amount}</p>
+              </div>
+            </div>
+            <div className="text-right">
+              <p className="text-[7px] font-medium text-white/70">{h.usd}</p>
+              <p className="text-[6px] font-semibold" style={{ color: h.pos ? "#3ba78a" : "#b53333" }}>{h.change}</p>
+            </div>
+          </div>
+        ))}
+
+        {/* Bottom nav */}
+        <div className="mt-3 flex justify-around rounded-xl bg-white/[0.03] px-2 py-1.5">
+          {["Home", "Games", "Wallet", "VIP"].map((n, i) => (
+            <div key={n} className="flex flex-col items-center gap-0.5">
+              <div className="h-2.5 w-2.5 rounded-sm" style={{ background: i === 0 ? "#c9a24a" : "rgba(255,255,255,0.1)" }} />
+              <span className="text-[5px]" style={{ color: i === 0 ? "#c9a24a" : "rgba(255,255,255,0.3)" }}>{n}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </IPhoneFrame>
+  );
+}
+
+function PhoneGameSession() {
+  return (
+    <IPhoneFrame>
+      <div className="px-3 pb-4 pt-8" style={{ minHeight: 420 }}>
+        {/* Status bar */}
+        <div className="mb-3 flex items-center justify-between text-[7px] text-white/40">
+          <span>9:41</span>
+          <div className="flex items-center gap-1">
+            <span className="text-[6px] text-[#3ba78a]">● LIVE</span>
+          </div>
+        </div>
+
+        {/* Game header */}
+        <div className="flex items-center justify-between">
+          <div>
+            <p className="text-[10px] font-semibold text-white/90">Premium Baccarat</p>
+            <p className="text-[7px] text-white/30">Table VIP-08 · Live</p>
+          </div>
+          <div className="rounded-md bg-[#b53333]/15 px-1.5 py-0.5 text-[6px] font-bold text-[#b53333]">HIGH</div>
+        </div>
+
+        {/* Game area */}
+        <div className="mt-3 rounded-xl border border-[#c9a24a]/10 bg-gradient-to-b from-[#0f120e] to-[#0d0e10] p-3">
+          <div className="flex justify-between text-center">
+            <div>
+              <p className="text-[6px] uppercase text-white/30">Player</p>
+              <div className="mt-1 flex gap-1">
+                <div className="h-6 w-4 rounded-sm bg-gradient-to-b from-white/20 to-white/5 border border-white/10 flex items-center justify-center text-[7px] text-white/70">K</div>
+                <div className="h-6 w-4 rounded-sm bg-gradient-to-b from-white/20 to-white/5 border border-white/10 flex items-center justify-center text-[7px] text-[#b53333]">9</div>
+              </div>
+              <p className="mt-1 text-[8px] font-bold text-white/80">9</p>
+            </div>
+            <div className="flex flex-col items-center justify-center">
+              <div className="rounded-full bg-[#c9a24a]/10 px-2 py-0.5 text-[6px] font-bold text-[#c9a24a]">VS</div>
+            </div>
+            <div>
+              <p className="text-[6px] uppercase text-white/30">Banker</p>
+              <div className="mt-1 flex gap-1">
+                <div className="h-6 w-4 rounded-sm bg-gradient-to-b from-white/20 to-white/5 border border-white/10 flex items-center justify-center text-[7px] text-white/70">7</div>
+                <div className="h-6 w-4 rounded-sm bg-gradient-to-b from-white/20 to-white/5 border border-white/10 flex items-center justify-center text-[7px] text-white/70">Q</div>
+              </div>
+              <p className="mt-1 text-[8px] font-bold text-white/80">7</p>
+            </div>
+          </div>
+          <div className="mx-auto mt-2 w-fit rounded-full bg-[#3ba78a]/15 px-3 py-0.5 text-[7px] font-bold text-[#3ba78a]">PLAYER WINS</div>
+        </div>
+
+        {/* Bet controls */}
+        <div className="mt-3 grid grid-cols-3 gap-1.5">
+          {[
+            { label: "Player", odds: "1:1", active: true },
+            { label: "Tie", odds: "8:1", active: false },
+            { label: "Banker", odds: "0.95:1", active: false },
+          ].map((b) => (
+            <div key={b.label} className={`rounded-lg border p-1.5 text-center ${b.active ? "border-[#c9a24a]/30 bg-[#c9a24a]/10" : "border-white/5 bg-white/[0.02]"}`}>
+              <p className="text-[7px] font-semibold" style={{ color: b.active ? "#c9a24a" : "rgba(255,255,255,0.5)" }}>{b.label}</p>
+              <p className="text-[6px] text-white/30">{b.odds}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* Stake */}
+        <div className="mt-3 rounded-xl border border-white/5 bg-white/[0.02] p-2.5">
+          <div className="flex items-center justify-between">
+            <p className="text-[7px] text-white/30">Your stake</p>
+            <p className="text-[10px] font-bold text-white/90">$500</p>
+          </div>
+          <div className="mt-1.5 flex gap-1">
+            {["$100", "$250", "$500", "$1K"].map((v) => (
+              <div key={v} className={`flex-1 rounded-md py-1 text-center text-[6px] font-semibold ${v === "$500" ? "bg-[#c9a24a]/15 text-[#c9a24a]" : "bg-white/[0.03] text-white/30"}`}>{v}</div>
+            ))}
+          </div>
+        </div>
+
+        {/* Session stats */}
+        <div className="mt-3 grid grid-cols-3 gap-1.5">
+          {[
+            { label: "Session P/L", value: "+$1,240", color: "#3ba78a" },
+            { label: "Win rate", value: "62%", color: "#c9a24a" },
+            { label: "Hands", value: "18", color: "rgba(255,255,255,0.6)" },
+          ].map((s) => (
+            <div key={s.label} className="rounded-lg bg-white/[0.02] p-1.5 text-center">
+              <p className="text-[5px] uppercase text-white/25">{s.label}</p>
+              <p className="mt-0.5 text-[9px] font-bold" style={{ color: s.color }}>{s.value}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* Bottom nav */}
+        <div className="mt-3 flex justify-around rounded-xl bg-white/[0.03] px-2 py-1.5">
+          {["Home", "Games", "Wallet", "VIP"].map((n, i) => (
+            <div key={n} className="flex flex-col items-center gap-0.5">
+              <div className="h-2.5 w-2.5 rounded-sm" style={{ background: i === 1 ? "#c9a24a" : "rgba(255,255,255,0.1)" }} />
+              <span className="text-[5px]" style={{ color: i === 1 ? "#c9a24a" : "rgba(255,255,255,0.3)" }}>{n}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </IPhoneFrame>
+  );
+}
+
+function PhoneVIP() {
+  return (
+    <IPhoneFrame>
+      <div className="px-3 pb-4 pt-8" style={{ minHeight: 420 }}>
+        {/* Status bar */}
+        <div className="mb-3 flex items-center justify-between text-[7px] text-white/40">
+          <span>9:41</span>
+          <div className="flex items-center gap-1 rounded-full bg-[#c9a24a]/10 px-1.5 py-0.5 text-[6px] text-[#c9a24a]">◆ Gold</div>
+        </div>
+
+        {/* VIP header */}
+        <div className="text-center">
+          <div className="mx-auto h-10 w-10 rounded-full bg-gradient-to-br from-[#c9a24a]/30 to-[#8e6c30]/20 border border-[#c9a24a]/20 flex items-center justify-center">
+            <span className="text-[12px]">♛</span>
+          </div>
+          <p className="mt-1.5 text-[10px] font-semibold text-white/90">Gold Member</p>
+          <p className="text-[7px] text-white/30">Level 24 · 8,420 XP</p>
+        </div>
+
+        {/* Progress to next tier */}
+        <div className="mt-3 rounded-xl border border-[#c9a24a]/15 bg-[#c9a24a]/5 p-2.5">
+          <div className="flex items-center justify-between text-[7px]">
+            <span className="text-[#c9a24a]">Gold</span>
+            <span className="text-white/40">Platinum</span>
+          </div>
+          <div className="mt-1.5 h-2 overflow-hidden rounded-full bg-white/5">
+            <div className="h-full w-[68%] rounded-full bg-gradient-to-r from-[#c9a24a] to-[#e7c983]" />
+          </div>
+          <p className="mt-1 text-center text-[6px] text-white/30">3,580 XP to Platinum</p>
+        </div>
+
+        {/* Multipliers */}
+        <div className="mt-3 grid grid-cols-2 gap-1.5">
+          <div className="rounded-lg border border-white/5 bg-white/[0.02] p-2 text-center">
+            <p className="text-[6px] uppercase text-white/25">Reward multiplier</p>
+            <p className="text-[12px] font-bold text-[#c9a24a]">2.4×</p>
+          </div>
+          <div className="rounded-lg border border-white/5 bg-white/[0.02] p-2 text-center">
+            <p className="text-[6px] uppercase text-white/25">Weekly bonus</p>
+            <p className="text-[12px] font-bold text-[#3ba78a]">$120</p>
+          </div>
+        </div>
+
+        {/* Rewards feed */}
+        <p className="mt-3 text-[8px] font-semibold text-white/50">Recent rewards</p>
+        {[
+          { label: "Streak bonus (7 days)", amount: "+$45", time: "2h ago", color: "#c9a24a" },
+          { label: "Weekly tier reward", amount: "+$120", time: "1d ago", color: "#3ba78a" },
+          { label: "Session milestone", amount: "+250 XP", time: "2d ago", color: "#e7c983" },
+          { label: "Random bonus drop", amount: "+$18", time: "3d ago", color: "#b53333" },
+        ].map((r) => (
+          <div key={r.label} className="mt-1.5 flex items-center justify-between rounded-lg bg-white/[0.02] px-2 py-1.5 border border-white/[0.04]">
+            <div className="flex items-center gap-1.5">
+              <div className="h-3 w-0.5 rounded-full" style={{ background: r.color }} />
+              <div>
+                <p className="text-[7px] text-white/70">{r.label}</p>
+                <p className="text-[5px] text-white/25">{r.time}</p>
+              </div>
+            </div>
+            <p className="text-[7px] font-bold" style={{ color: r.color }}>{r.amount}</p>
+          </div>
+        ))}
+
+        {/* Perks */}
+        <p className="mt-3 text-[8px] font-semibold text-white/50">Gold perks</p>
+        <div className="mt-1 grid grid-cols-2 gap-1">
+          {["Priority withdrawals", "Dedicated host", "Higher limits", "Exclusive tables"].map((p) => (
+            <div key={p} className="flex items-center gap-1 rounded-md bg-white/[0.02] px-1.5 py-1">
+              <span className="text-[6px] text-[#c9a24a]">✓</span>
+              <span className="text-[5px] text-white/40">{p}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </IPhoneFrame>
+  );
+}
+
 /* ══════════════════════ STAT BOX ══════════════════════ */
 
 function StatBox({ value, label, sub }: { value: string; label: string; sub?: string }) {
@@ -384,7 +669,20 @@ function CoverSlide() {
           transparency, and intelligent progression.
         </p>
 
-        <div className="mx-auto mt-12 grid max-w-sm grid-cols-3 gap-4">
+        {/* Phone mockups */}
+        <div className="mt-10 flex items-end justify-center gap-6 sm:gap-10">
+          <div className="hidden -rotate-6 scale-[0.85] opacity-70 sm:block">
+            <PhoneVIP />
+          </div>
+          <div className="scale-[0.95]">
+            <PhoneDashboard />
+          </div>
+          <div className="hidden rotate-6 scale-[0.85] opacity-70 sm:block">
+            <PhoneGameSession />
+          </div>
+        </div>
+
+        <div className="mx-auto mt-10 grid max-w-sm grid-cols-3 gap-4">
           {[
             { label: "Raise", value: "$100K" },
             { label: "Token", value: "$YUEJIN" },
@@ -480,27 +778,35 @@ function SolutionSlide() {
       <GlowOrb x="5%" y="30%" color="rgba(59,167,138,0.06)" size="200px" />
       <GlowOrb x="85%" y="60%" color="rgba(201,162,74,0.06)" size="180px" />
 
-      <Tag>Our solution</Tag>
-      <H2>
-        A controlled wealth{" "}
-        <span className="text-gradient-gold">operating system</span>
-      </H2>
-      <P>
-        YUEJIN merges fintech-grade infrastructure with premium entertainment —
-        transparent odds, instant settlement, and intelligent rewards in one
-        platform.
-      </P>
+      <div className="grid items-start gap-10 lg:grid-cols-[1fr_auto]">
+        <div>
+          <Tag>Our solution</Tag>
+          <H2>
+            A controlled wealth{" "}
+            <span className="text-gradient-gold">operating system</span>
+          </H2>
+          <P>
+            YUEJIN merges fintech-grade infrastructure with premium entertainment —
+            transparent odds, instant settlement, and intelligent rewards in one
+            platform.
+          </P>
 
-      <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {solutions.map((p, i) => (
-          <Card key={p.title} glow={i === 0}>
-            <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl border border-aurix-gold/20 bg-aurix-gold/5">
-              {p.icon}
-            </div>
-            <p className="font-display text-base font-semibold text-aurix-gold">{p.title}</p>
-            <p className="mt-2 text-sm leading-relaxed text-aurix-muted">{p.desc}</p>
-          </Card>
-        ))}
+          <div className="mt-10 grid gap-4 sm:grid-cols-2">
+            {solutions.map((p, i) => (
+              <Card key={p.title} glow={i === 0}>
+                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl border border-aurix-gold/20 bg-aurix-gold/5">
+                  {p.icon}
+                </div>
+                <p className="font-display text-base font-semibold text-aurix-gold">{p.title}</p>
+                <p className="mt-2 text-sm leading-relaxed text-aurix-muted">{p.desc}</p>
+              </Card>
+            ))}
+          </div>
+        </div>
+
+        <div className="hidden lg:block">
+          <PhoneGameSession />
+        </div>
       </div>
 
       <AccentLine />
@@ -542,35 +848,43 @@ function ProductSlide() {
         spacious, and legible at a glance.
       </P>
 
-      <div className="mt-10 grid gap-4 sm:grid-cols-2">
-        {productFeatures.map((t) => (
-          <Card key={t.tag} className="relative overflow-hidden">
-            <div className="pointer-events-none absolute -right-6 -top-6 h-24 w-24 rounded-full bg-aurix-gold/3 blur-2xl" />
-            <div className="flex items-start gap-4">
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-aurix-gold/20 bg-aurix-gold/5">
-                {t.icon}
-              </div>
+      <div className="mt-10 grid items-start gap-8 lg:grid-cols-[1fr_auto]">
+        <div className="space-y-4">
+          <div className="grid gap-4 sm:grid-cols-2">
+            {productFeatures.map((t) => (
+              <Card key={t.tag} className="relative overflow-hidden">
+                <div className="pointer-events-none absolute -right-6 -top-6 h-24 w-24 rounded-full bg-aurix-gold/3 blur-2xl" />
+                <div className="flex items-start gap-4">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-aurix-gold/20 bg-aurix-gold/5">
+                    {t.icon}
+                  </div>
+                  <div>
+                    <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-aurix-faint">{t.tag}</p>
+                    <p className="mt-1 font-display text-lg font-semibold text-aurix-text">{t.title}</p>
+                    <p className="mt-2 text-sm leading-relaxed text-aurix-muted">{t.desc}</p>
+                  </div>
+                </div>
+              </Card>
+            ))}
+          </div>
+
+          <div className="rounded-2xl border border-aurix-gold/15 bg-aurix-gold/5 p-5">
+            <div className="flex items-center gap-3">
+              <IconTrendUp />
               <div>
-                <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-aurix-faint">{t.tag}</p>
-                <p className="mt-1 font-display text-lg font-semibold text-aurix-text">{t.title}</p>
-                <p className="mt-2 text-sm leading-relaxed text-aurix-muted">{t.desc}</p>
+                <p className="text-sm font-semibold text-aurix-text">
+                  <span className="text-aurix-gold">+16.8%</span> average engagement uplift after UX improvement
+                </p>
+                <p className="mt-1 text-xs text-aurix-muted">
+                  AI analytics on user behavior drove targeted improvements across retention (89%), session depth (74%), and satisfaction (92%).
+                </p>
               </div>
             </div>
-          </Card>
-        ))}
-      </div>
-
-      <div className="mt-8 rounded-2xl border border-aurix-gold/15 bg-aurix-gold/5 p-5">
-        <div className="flex items-center gap-3">
-          <IconTrendUp />
-          <div>
-            <p className="text-sm font-semibold text-aurix-text">
-              <span className="text-aurix-gold">+16.8%</span> average engagement uplift after UX improvement
-            </p>
-            <p className="mt-1 text-xs text-aurix-muted">
-              AI analytics on user behavior drove targeted improvements across retention (89%), session depth (74%), and satisfaction (92%).
-            </p>
           </div>
+        </div>
+
+        <div className="hidden lg:block">
+          <PhoneDashboard />
         </div>
       </div>
     </Slide>
@@ -776,46 +1090,54 @@ function GamificationSlide() {
     <Slide n={8} variant="dark">
       <GlowOrb x="50%" y="15%" color="rgba(201,162,74,0.06)" size="300px" />
 
-      <Tag>Gamification</Tag>
-      <H2>Status, ritual, momentum</H2>
-      <P>
-        Structured VIP progression with XP velocity, reward multipliers, and
-        concierge unlocks at every tier — designed for long-term retention.
-      </P>
+      <div className="grid items-start gap-10 lg:grid-cols-[1fr_auto]">
+        <div>
+          <Tag>Gamification</Tag>
+          <H2>Status, ritual, momentum</H2>
+          <P>
+            Structured VIP progression with XP velocity, reward multipliers, and
+            concierge unlocks at every tier — designed for long-term retention.
+          </P>
 
-      <div className="mt-10 grid gap-3 sm:grid-cols-3 lg:grid-cols-6">
-        {vipTiers.map((tier, i) => (
-          <div key={tier.name} className="relative overflow-hidden rounded-2xl border border-aurix-border/60 bg-gradient-to-br from-aurix-surface/50 to-aurix-void/80 p-4 text-center transition-all hover:scale-105">
-            <div className="pointer-events-none absolute inset-x-0 top-0 h-1" style={{ background: `linear-gradient(90deg, transparent, ${tier.color}, transparent)` }} />
-            <div className="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-full border" style={{ borderColor: `${tier.color}40`, background: `${tier.color}10` }}>
-              <span className="font-display text-sm font-bold" style={{ color: tier.color }}>{i + 1}</span>
-            </div>
-            <p className="text-[9px] uppercase tracking-[0.14em] text-aurix-faint">Tier {i + 1}</p>
-            <p className="mt-1 font-display text-sm font-bold" style={{ color: tier.color }}>{tier.name}</p>
+          <div className="mt-10 grid gap-3 sm:grid-cols-3 lg:grid-cols-6">
+            {vipTiers.map((tier, i) => (
+              <div key={tier.name} className="relative overflow-hidden rounded-2xl border border-aurix-border/60 bg-gradient-to-br from-aurix-surface/50 to-aurix-void/80 p-4 text-center transition-all hover:scale-105">
+                <div className="pointer-events-none absolute inset-x-0 top-0 h-1" style={{ background: `linear-gradient(90deg, transparent, ${tier.color}, transparent)` }} />
+                <div className="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-full border" style={{ borderColor: `${tier.color}40`, background: `${tier.color}10` }}>
+                  <span className="font-display text-sm font-bold" style={{ color: tier.color }}>{i + 1}</span>
+                </div>
+                <p className="text-[9px] uppercase tracking-[0.14em] text-aurix-faint">Tier {i + 1}</p>
+                <p className="mt-1 font-display text-sm font-bold" style={{ color: tier.color }}>{tier.name}</p>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
 
-      <div className="mt-6 overflow-hidden rounded-full border border-aurix-border/40 bg-aurix-surface/40 p-1">
-        <div className="relative h-4 w-[78%] overflow-hidden rounded-full bg-gradient-to-r from-[#cd7f32] via-aurix-gold to-[#3ba78a]">
-          <div className="absolute inset-0 bg-[linear-gradient(90deg,transparent_0%,rgba(255,255,255,0.15)_50%,transparent_100%)] animate-shimmer" />
-        </div>
-      </div>
-
-      <div className="mt-10 grid gap-4 sm:grid-cols-3">
-        {[
-          { icon: <IconTrophy />, title: "Bonus drops", desc: "Randomized rewards tied to milestones and seasonal campaigns." },
-          { icon: <IconBolt />, title: "Streak rewards", desc: "Consecutive sessions unlock escalating multipliers." },
-          { icon: <IconTrendUp />, title: "XP & levels", desc: "Long-term progression with concierge unlocks at every milestone." },
-        ].map((c) => (
-          <Card key={c.title}>
-            <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl border border-aurix-gold/20 bg-aurix-gold/5">
-              {c.icon}
+          <div className="mt-6 overflow-hidden rounded-full border border-aurix-border/40 bg-aurix-surface/40 p-1">
+            <div className="relative h-4 w-[78%] overflow-hidden rounded-full bg-gradient-to-r from-[#cd7f32] via-aurix-gold to-[#3ba78a]">
+              <div className="absolute inset-0 bg-[linear-gradient(90deg,transparent_0%,rgba(255,255,255,0.15)_50%,transparent_100%)] animate-shimmer" />
             </div>
-            <p className="font-display text-base font-semibold text-aurix-gold">{c.title}</p>
-            <p className="mt-2 text-sm leading-relaxed text-aurix-muted">{c.desc}</p>
-          </Card>
-        ))}
+          </div>
+
+          <div className="mt-10 grid gap-4 sm:grid-cols-3">
+            {[
+              { icon: <IconTrophy />, title: "Bonus drops", desc: "Randomized rewards tied to milestones and seasonal campaigns." },
+              { icon: <IconBolt />, title: "Streak rewards", desc: "Consecutive sessions unlock escalating multipliers." },
+              { icon: <IconTrendUp />, title: "XP & levels", desc: "Long-term progression with concierge unlocks at every milestone." },
+            ].map((c) => (
+              <Card key={c.title}>
+                <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl border border-aurix-gold/20 bg-aurix-gold/5">
+                  {c.icon}
+                </div>
+                <p className="font-display text-base font-semibold text-aurix-gold">{c.title}</p>
+                <p className="mt-2 text-sm leading-relaxed text-aurix-muted">{c.desc}</p>
+              </Card>
+            ))}
+          </div>
+        </div>
+
+        <div className="hidden lg:block">
+          <PhoneVIP />
+        </div>
       </div>
     </Slide>
   );
