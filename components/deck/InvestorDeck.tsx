@@ -523,7 +523,7 @@ function CtaSlide() {
       <div className="mx-auto mt-10 grid max-w-md gap-4 sm:grid-cols-2">
         <Card className="text-center">
           <p className="text-[10px] font-semibold uppercase tracking-wider text-aurix-faint">Raise</p>
-          <p className="mt-2 font-display text-2xl font-bold text-gradient-gold">$200,000</p>
+          <p className="mt-2 font-display text-2xl font-bold text-gradient-gold">$100,000</p>
         </Card>
         <Card className="text-center">
           <p className="text-[10px] font-semibold uppercase tracking-wider text-aurix-faint">Token</p>

@@ -286,7 +286,8 @@ function ProductSection() {
               </p>
               <p className="mt-2 text-lg font-semibold text-aurix-text">Adaptive session grid</p>
               <p className="mt-1 text-sm text-aurix-muted">
-                Latency-aware matching with smart routing across global nodes.
+                Latency-aware matching during high traffic — smart routing distributes
+                sessions across global nodes to maintain sub-second response times at peak load.
               </p>
             </div>
             <div className="rounded-xl border border-aurix-border/60 bg-aurix-void/70 p-4">
@@ -295,7 +296,8 @@ function ProductSection() {
               </p>
               <p className="mt-2 text-lg font-semibold text-aurix-text">Controlled exposure</p>
               <p className="mt-1 text-sm text-aurix-muted">
-                Dynamic limit controls and guardrails calibrated by account tier.
+                Dynamic controls and guardrails calibrated by account tier — protecting
+                both the platform and the player with intelligent limit management.
               </p>
             </div>
           </div>
@@ -306,7 +308,8 @@ function ProductSection() {
               </p>
               <p className="mt-2 text-lg font-semibold text-aurix-text">Unified balance</p>
               <p className="mt-1 text-sm text-aurix-muted">
-                Fiat and crypto in one view with instant reconciliation.
+                Fiat and crypto in one view with instant reconciliation — one wallet,
+                full visibility, zero friction between deposit and play.
               </p>
             </div>
             <div className="rounded-xl border border-aurix-border/60 bg-aurix-void/70 p-4">
@@ -315,7 +318,8 @@ function ProductSection() {
               </p>
               <p className="mt-2 text-lg font-semibold text-aurix-text">Native performance</p>
               <p className="mt-1 text-sm text-aurix-muted">
-                Biometric unlock, gesture controls, low-latency streaming.
+                Optimised for mobile players — responsive design, biometric unlock, gesture
+                controls, and low-latency streaming across all devices worldwide.
               </p>
             </div>
           </div>
@@ -326,13 +330,18 @@ function ProductSection() {
           </p>
           <p className="mt-3 font-display text-3xl font-semibold text-gradient-gold">+16.8%</p>
           <p className="mt-1 text-sm text-aurix-muted">
-            Average engagement uplift after UX migration
+            Average engagement uplift after UX improvement
           </p>
-          <div className="mt-6 space-y-3">
+          <p className="mt-3 text-xs leading-relaxed text-aurix-muted">
+            We ran AI analytics on user behavior across sessions. Based on the insights,
+            we implemented targeted UX changes that delivered measurable gains across all
+            key performance metrics.
+          </p>
+          <div className="mt-5 space-y-3">
             {[
               { label: "Retention", w: 89 },
               { label: "Session depth", w: 74 },
-              { label: "Satisfaction", w: 92 },
+              { label: "Customer satisfaction", w: 92 },
             ].map((bar) => (
               <div key={bar.label}>
                 <div className="mb-1 flex items-center justify-between text-xs text-aurix-muted">
@@ -348,12 +357,13 @@ function ProductSection() {
               </div>
             ))}
           </div>
-          <div className="mt-8 rounded-xl border border-aurix-border/50 bg-aurix-void/60 p-4">
+          <div className="mt-6 rounded-xl border border-aurix-border/50 bg-aurix-void/60 p-4">
             <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-aurix-faint">
               AI insights
             </p>
             <p className="mt-2 text-sm text-aurix-muted">
               Personalized stake guidance and session pacing — intelligent, never predatory.
+              Continuous behavioral analysis drives iterative platform improvements.
             </p>
           </div>
         </motion.div>
@@ -673,13 +683,6 @@ function WhySection() {
 
 /* ─────────────────────── INVESTOR ─────────────────────── */
 
-const allocation = [
-  { label: "Product and engineering", value: 38 },
-  { label: "Growth and user acquisition", value: 27 },
-  { label: "Liquidity and rewards engine", value: 20 },
-  { label: "Compliance and legal", value: 15 },
-];
-
 function InvestorSection() {
   return (
     <section
@@ -693,7 +696,7 @@ function InvestorSection() {
               Private round
             </p>
             <h2 className="mt-3 font-display text-3xl font-semibold text-aurix-text sm:text-4xl">
-              Raise: $200,000
+              Raise: $100,000
             </h2>
             <p className="mt-4 text-sm leading-relaxed text-aurix-muted">
               Funding supports product acceleration, global growth, compliance depth, and
@@ -725,25 +728,28 @@ function InvestorSection() {
               Use of funds
             </p>
             <div className="mt-6 space-y-5">
-              {allocation.map((slice) => (
+              {saleAllocation.map((slice) => (
                 <div key={slice.label}>
                   <div className="mb-1.5 flex items-center justify-between text-sm">
-                    <span className="text-aurix-muted">{slice.label}</span>
+                    <span className="flex items-center gap-2 text-aurix-muted">
+                      <span className="h-2.5 w-2.5 shrink-0 rounded-sm" style={{ background: slice.color }} />
+                      {slice.label}
+                    </span>
                     <span className="font-display font-semibold text-aurix-gold">
-                      {slice.value}%
+                      {slice.pct}%
                     </span>
                   </div>
                   <div className="h-2 overflow-hidden rounded-full bg-aurix-surface">
                     <div
-                      className="h-2 rounded-full bg-gradient-to-r from-aurix-gold to-aurix-red-mid"
-                      style={{ width: `${slice.value}%` }}
+                      className="h-2 rounded-full"
+                      style={{ width: `${slice.pct}%`, background: slice.color }}
                     />
                   </div>
                 </div>
               ))}
             </div>
             <p className="mt-8 text-[10px] leading-relaxed text-aurix-faint">
-              Illustrative allocation for investor discussion. Final deployment subject to
+              Allocation synced with $YUEJIN sale proceeds. Final deployment subject to
               operational priorities and market conditions.
             </p>
           </motion.div>
@@ -840,10 +846,10 @@ export function LandingPage() {
       <SiteHeader />
       <main className="bg-aurix-canvas overflow-x-hidden pt-16">
         <HeroSection />
+        <TokenomicsSection />
         <TrustSection />
         <ProductSection />
         <GamificationSection />
-        <TokenomicsSection />
         <WhySection />
         <InvestorSection />
         <CtaSection />
