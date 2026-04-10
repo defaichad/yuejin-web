@@ -340,18 +340,89 @@ function IconXCircle() {
   );
 }
 
-/* ══════════════════════ IPHONE MOCKUP ══════════════════════ */
+/* ══════════════════════ IPHONE 15 PRO MOCKUP ══════════════════════ */
 
 function IPhoneFrame({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
-    <div className={`relative mx-auto ${className}`} style={{ width: 220 }}>
-      <div className="absolute -inset-4 rounded-[40px] bg-aurix-gold/5 blur-2xl" />
-      <div className="relative overflow-hidden rounded-[28px] border-2 border-white/10 bg-[#0a0a0b] p-1.5 shadow-[0_0_40px_-8px_rgba(201,162,74,0.2)]">
-        <div className="absolute left-1/2 top-2.5 z-20 h-[18px] w-[80px] -translate-x-1/2 rounded-full bg-[#0a0a0b]" />
-        <div className="overflow-hidden rounded-[22px] bg-[#0d0e10]">
-          {children}
+    <div className={`relative mx-auto ${className}`} style={{ width: 280 }}>
+      <div className="absolute -inset-6 rounded-[52px] bg-aurix-gold/5 blur-3xl" />
+      <div className="relative overflow-hidden rounded-[44px] bg-[#1a1a1c] p-[3px] shadow-[0_0_0_1px_rgba(255,255,255,0.08),0_20px_60px_-10px_rgba(0,0,0,0.7),0_0_40px_-5px_rgba(201,162,74,0.12)]">
+        {/* Titanium frame highlight */}
+        <div className="pointer-events-none absolute inset-0 rounded-[44px] bg-gradient-to-b from-white/[0.08] via-transparent to-white/[0.03]" />
+
+        {/* Side buttons — left */}
+        <div className="absolute -left-[2px] top-[90px] h-[28px] w-[3px] rounded-l-sm bg-[#2a2a2d]" />
+        <div className="absolute -left-[2px] top-[130px] h-[48px] w-[3px] rounded-l-sm bg-[#2a2a2d]" />
+        <div className="absolute -left-[2px] top-[185px] h-[48px] w-[3px] rounded-l-sm bg-[#2a2a2d]" />
+        {/* Side button — right */}
+        <div className="absolute -right-[2px] top-[140px] h-[62px] w-[3px] rounded-r-sm bg-[#2a2a2d]" />
+
+        <div className="relative overflow-hidden rounded-[41px] bg-[#000000]">
+          {/* Dynamic Island */}
+          <div className="absolute left-1/2 top-[10px] z-30 h-[28px] w-[100px] -translate-x-1/2 rounded-full bg-[#000000] shadow-[0_0_0_1px_rgba(255,255,255,0.04)]">
+            <div className="absolute right-[18px] top-[9px] h-[10px] w-[10px] rounded-full bg-[#0c0c0e] shadow-[inset_0_0_2px_rgba(255,255,255,0.06)]" />
+          </div>
+
+          {/* Screen content */}
+          <div className="relative">
+            {children}
+          </div>
+
+          {/* Home indicator */}
+          <div className="flex justify-center pb-2 pt-1">
+            <div className="h-[4px] w-[100px] rounded-full bg-white/20" />
+          </div>
         </div>
       </div>
+    </div>
+  );
+}
+
+function StatusBar({ right }: { right?: React.ReactNode }) {
+  return (
+    <div className="flex items-center justify-between px-6 pb-1 pt-[42px]">
+      <span className="text-[11px] font-semibold text-white/80">9:41</span>
+      <div className="flex items-center gap-1.5">
+        {right || (
+          <>
+            <svg width="16" height="11" viewBox="0 0 16 11" fill="none">
+              <rect x="0" y="6" width="3" height="5" rx="0.7" fill="white" opacity="0.5"/>
+              <rect x="4.5" y="4" width="3" height="7" rx="0.7" fill="white" opacity="0.5"/>
+              <rect x="9" y="1.5" width="3" height="9.5" rx="0.7" fill="white" opacity="0.5"/>
+              <rect x="13" y="0" width="3" height="11" rx="0.7" fill="white" opacity="0.5"/>
+            </svg>
+            <svg width="14" height="11" viewBox="0 0 14 11" fill="none">
+              <path d="M1 3.5C3.5 1 10.5 1 13 3.5" stroke="white" strokeWidth="1" strokeLinecap="round" opacity="0.5"/>
+              <path d="M3 5.8C4.8 4.2 9.2 4.2 11 5.8" stroke="white" strokeWidth="1" strokeLinecap="round" opacity="0.5"/>
+              <circle cx="7" cy="8.5" r="1.3" fill="white" opacity="0.5"/>
+            </svg>
+            <svg width="22" height="11" viewBox="0 0 22 11" fill="none">
+              <rect x="0" y="0.5" width="19" height="10" rx="2.5" stroke="white" strokeWidth="0.8" opacity="0.35"/>
+              <rect x="19.5" y="3" width="2.5" height="5" rx="1" fill="white" opacity="0.2"/>
+              <rect x="1.5" y="2" width="13" height="7" rx="1.5" fill="#3ba78a"/>
+            </svg>
+          </>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function BottomNav({ active = 0 }: { active?: number }) {
+  const items = [
+    { label: "Home", icon: <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2.5 7L9 2L15.5 7V15C15.5 15.55 15.05 16 14.5 16H3.5C2.95 16 2.5 15.55 2.5 15V7Z" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/><path d="M6.5 16V9.5H11.5V16" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg> },
+    { label: "Games", icon: <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="2" width="5.5" height="5.5" rx="1" stroke="currentColor" strokeWidth="1.2"/><rect x="10.5" y="2" width="5.5" height="5.5" rx="1" stroke="currentColor" strokeWidth="1.2"/><rect x="2" y="10.5" width="5.5" height="5.5" rx="1" stroke="currentColor" strokeWidth="1.2"/><rect x="10.5" y="10.5" width="5.5" height="5.5" rx="1" stroke="currentColor" strokeWidth="1.2"/></svg> },
+    { label: "Wallet", icon: <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M15.5 9V5.5H4C3.17 5.5 2.5 4.83 2.5 4C2.5 3.17 3.17 2.5 4 2.5H14V5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/><path d="M2.5 4V14C2.5 14.83 3.17 15.5 4 15.5H15.5V11.5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/><circle cx="14" cy="10.5" r="1.2" fill="currentColor"/></svg> },
+    { label: "VIP", icon: <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2L11.1 6.3L16 7L12.5 10.4L13.3 15.2L9 12.9L4.7 15.2L5.5 10.4L2 7L6.9 6.3L9 2Z" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg> },
+  ];
+  return (
+    <div className="mx-3 mb-1 flex justify-around rounded-2xl bg-white/[0.04] px-1 py-2 border border-white/[0.04]">
+      {items.map((item, i) => (
+        <div key={item.label} className="flex flex-col items-center gap-0.5" style={{ color: i === active ? "#c9a24a" : "rgba(255,255,255,0.25)" }}>
+          {item.icon}
+          <span className="text-[8px] font-medium">{item.label}</span>
+        </div>
+      ))}
     </div>
   );
 }
@@ -359,88 +430,66 @@ function IPhoneFrame({ children, className = "" }: { children: React.ReactNode; 
 function PhoneDashboard() {
   return (
     <IPhoneFrame>
-      <div className="px-3 pb-4 pt-8" style={{ minHeight: 420 }}>
-        {/* Status bar */}
-        <div className="mb-3 flex items-center justify-between text-[7px] text-white/40">
-          <span>9:41</span>
-          <div className="flex gap-1">
-            <svg width="10" height="7" viewBox="0 0 10 7"><rect x="0" y="4" width="2" height="3" rx="0.5" fill="white" opacity="0.4"/><rect x="3" y="2" width="2" height="5" rx="0.5" fill="white" opacity="0.4"/><rect x="6" y="0" width="2" height="7" rx="0.5" fill="white" opacity="0.4"/></svg>
-            <svg width="14" height="7" viewBox="0 0 14 7"><rect x="0" y="0" width="12" height="7" rx="1.5" stroke="white" strokeWidth="0.6" fill="none" opacity="0.4"/><rect x="12.5" y="2" width="1.5" height="3" rx="0.5" fill="white" opacity="0.4"/><rect x="1" y="1" width="8" height="5" rx="1" fill="#3ba78a"/></svg>
+      <StatusBar />
+      <div className="px-4 pb-3">
+        <p className="text-[10px] text-white/35">Welcome back</p>
+        <p className="text-[13px] font-semibold text-white/90">Portfolio Overview</p>
+
+        <div className="mt-3 rounded-2xl border border-[#c9a24a]/12 bg-gradient-to-br from-[#1a1510] to-[#0e0e10] p-4">
+          <p className="text-[9px] font-medium uppercase tracking-widest text-[#c9a24a]/50">Total balance</p>
+          <p className="mt-1 text-[26px] font-bold leading-none tracking-tight text-white">$12,847<span className="text-white/30">.62</span></p>
+          <div className="mt-1.5 flex items-center gap-1.5">
+            <span className="rounded-full bg-[#3ba78a]/12 px-2 py-0.5 text-[9px] font-bold text-[#3ba78a]">▲ 4.2%</span>
+            <span className="text-[9px] text-white/25">24h</span>
           </div>
-        </div>
-
-        {/* Greeting */}
-        <p className="text-[8px] text-white/40">Welcome back</p>
-        <p className="text-[10px] font-semibold text-white/90">Portfolio Overview</p>
-
-        {/* Balance card */}
-        <div className="mt-2 rounded-xl bg-gradient-to-br from-[#1a1510] to-[#0d0e10] p-3 border border-[#c9a24a]/15">
-          <p className="text-[7px] uppercase tracking-wider text-[#c9a24a]/60">Total balance</p>
-          <p className="mt-0.5 text-[18px] font-bold text-white">$12,847.<span className="text-white/40">62</span></p>
-          <div className="mt-1 flex items-center gap-1">
-            <span className="text-[7px] font-semibold text-[#3ba78a]">+4.2%</span>
-            <span className="text-[7px] text-white/30">24h</span>
-          </div>
-
-          {/* Mini chart */}
-          <svg viewBox="0 0 150 30" className="mt-2 w-full" height="28">
+          <svg viewBox="0 0 200 40" className="mt-3 w-full" height="40">
             <defs>
               <linearGradient id="pcg" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#c9a24a" stopOpacity="0.3" />
+                <stop offset="0%" stopColor="#c9a24a" stopOpacity="0.25" />
                 <stop offset="100%" stopColor="#c9a24a" stopOpacity="0" />
               </linearGradient>
             </defs>
-            <path d="M0 25 Q10 22 20 20 T40 18 T60 22 T80 14 T100 16 T120 8 T150 5 V30 H0 Z" fill="url(#pcg)" />
-            <path d="M0 25 Q10 22 20 20 T40 18 T60 22 T80 14 T100 16 T120 8 T150 5" fill="none" stroke="#c9a24a" strokeWidth="1.2" />
+            <path d="M0 35 Q15 30 30 28 T60 24 T90 30 T120 18 T150 20 T180 10 T200 6 V40 H0 Z" fill="url(#pcg)" />
+            <path d="M0 35 Q15 30 30 28 T60 24 T90 30 T120 18 T150 20 T180 10 T200 6" fill="none" stroke="#c9a24a" strokeWidth="1.5" />
+            <circle cx="200" cy="6" r="2.5" fill="#c9a24a" />
           </svg>
         </div>
 
-        {/* Quick actions */}
-        <div className="mt-3 grid grid-cols-3 gap-1.5">
+        <div className="mt-3 grid grid-cols-3 gap-2">
           {[
             { icon: "↑", label: "Deposit", color: "#3ba78a" },
             { icon: "↓", label: "Withdraw", color: "#c9a24a" },
             { icon: "⟳", label: "Swap", color: "#b53333" },
           ].map((a) => (
-            <div key={a.label} className="flex flex-col items-center gap-1 rounded-lg bg-white/[0.03] py-2">
-              <div className="flex h-5 w-5 items-center justify-center rounded-full text-[8px]" style={{ background: `${a.color}20`, color: a.color }}>{a.icon}</div>
-              <span className="text-[6px] text-white/40">{a.label}</span>
+            <div key={a.label} className="flex flex-col items-center gap-1.5 rounded-xl bg-white/[0.03] border border-white/[0.04] py-2.5">
+              <div className="flex h-7 w-7 items-center justify-center rounded-full text-[11px] font-semibold" style={{ background: `${a.color}15`, color: a.color }}>{a.icon}</div>
+              <span className="text-[8px] font-medium text-white/40">{a.label}</span>
             </div>
           ))}
         </div>
 
-        {/* Holdings */}
-        <p className="mt-3 text-[8px] font-semibold text-white/50">Holdings</p>
+        <p className="mt-4 text-[10px] font-semibold text-white/45">Holdings</p>
         {[
-          { name: "$YUEJIN", amount: "45,200", usd: "$8,136.00", change: "+12.4%", pos: true },
-          { name: "USDT", amount: "2,400.00", usd: "$2,400.00", change: "+0.0%", pos: true },
-          { name: "SOL", amount: "14.8", usd: "$2,311.62", change: "+2.1%", pos: true },
+          { name: "$YUEJIN", sub: "45,200 tokens", usd: "$8,136.00", change: "+12.4%", pos: true },
+          { name: "USDT", sub: "2,400.00", usd: "$2,400.00", change: "+0.0%", pos: true },
+          { name: "SOL", sub: "14.8 SOL", usd: "$2,311.62", change: "+2.1%", pos: true },
         ].map((h) => (
-          <div key={h.name} className="mt-1.5 flex items-center justify-between rounded-lg bg-white/[0.02] px-2 py-1.5 border border-white/[0.04]">
-            <div className="flex items-center gap-1.5">
-              <div className="h-4 w-4 rounded-full bg-gradient-to-br from-[#c9a24a]/40 to-[#8e6c30]/40" />
+          <div key={h.name} className="mt-2 flex items-center justify-between rounded-xl border border-white/[0.05] bg-white/[0.02] px-3 py-2.5">
+            <div className="flex items-center gap-2.5">
+              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-[#c9a24a]/30 to-[#8e6c30]/20 text-[9px] font-bold text-[#c9a24a]">{h.name[0] === "$" ? "Y" : h.name[0]}</div>
               <div>
-                <p className="text-[8px] font-semibold text-white/80">{h.name}</p>
-                <p className="text-[6px] text-white/30">{h.amount}</p>
+                <p className="text-[11px] font-semibold text-white/85">{h.name}</p>
+                <p className="text-[8px] text-white/25">{h.sub}</p>
               </div>
             </div>
             <div className="text-right">
-              <p className="text-[7px] font-medium text-white/70">{h.usd}</p>
-              <p className="text-[6px] font-semibold" style={{ color: h.pos ? "#3ba78a" : "#b53333" }}>{h.change}</p>
+              <p className="text-[10px] font-semibold text-white/70">{h.usd}</p>
+              <p className="text-[8px] font-bold" style={{ color: h.pos ? "#3ba78a" : "#b53333" }}>{h.change}</p>
             </div>
           </div>
         ))}
-
-        {/* Bottom nav */}
-        <div className="mt-3 flex justify-around rounded-xl bg-white/[0.03] px-2 py-1.5">
-          {["Home", "Games", "Wallet", "VIP"].map((n, i) => (
-            <div key={n} className="flex flex-col items-center gap-0.5">
-              <div className="h-2.5 w-2.5 rounded-sm" style={{ background: i === 0 ? "#c9a24a" : "rgba(255,255,255,0.1)" }} />
-              <span className="text-[5px]" style={{ color: i === 0 ? "#c9a24a" : "rgba(255,255,255,0.3)" }}>{n}</span>
-            </div>
-          ))}
-        </div>
       </div>
+      <BottomNav active={0} />
     </IPhoneFrame>
   );
 }
@@ -448,101 +497,80 @@ function PhoneDashboard() {
 function PhoneGameSession() {
   return (
     <IPhoneFrame>
-      <div className="px-3 pb-4 pt-8" style={{ minHeight: 420 }}>
-        {/* Status bar */}
-        <div className="mb-3 flex items-center justify-between text-[7px] text-white/40">
-          <span>9:41</span>
-          <div className="flex items-center gap-1">
-            <span className="text-[6px] text-[#3ba78a]">● LIVE</span>
-          </div>
-        </div>
-
-        {/* Game header */}
+      <StatusBar right={<span className="flex items-center gap-1 rounded-full bg-[#3ba78a]/12 px-2 py-0.5 text-[9px] font-bold text-[#3ba78a]">● LIVE</span>} />
+      <div className="px-4 pb-3">
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-[10px] font-semibold text-white/90">Premium Baccarat</p>
-            <p className="text-[7px] text-white/30">Table VIP-08 · Live</p>
+            <p className="text-[13px] font-semibold text-white/90">Premium Baccarat</p>
+            <p className="text-[9px] text-white/30">Table VIP-08 · Live dealer</p>
           </div>
-          <div className="rounded-md bg-[#b53333]/15 px-1.5 py-0.5 text-[6px] font-bold text-[#b53333]">HIGH</div>
+          <div className="rounded-lg bg-[#b53333]/12 px-2.5 py-1 text-[8px] font-bold text-[#b53333]">HIGH</div>
         </div>
 
-        {/* Game area */}
-        <div className="mt-3 rounded-xl border border-[#c9a24a]/10 bg-gradient-to-b from-[#0f120e] to-[#0d0e10] p-3">
-          <div className="flex justify-between text-center">
-            <div>
-              <p className="text-[6px] uppercase text-white/30">Player</p>
-              <div className="mt-1 flex gap-1">
-                <div className="h-6 w-4 rounded-sm bg-gradient-to-b from-white/20 to-white/5 border border-white/10 flex items-center justify-center text-[7px] text-white/70">K</div>
-                <div className="h-6 w-4 rounded-sm bg-gradient-to-b from-white/20 to-white/5 border border-white/10 flex items-center justify-center text-[7px] text-[#b53333]">9</div>
+        <div className="mt-4 rounded-2xl border border-[#c9a24a]/10 bg-gradient-to-b from-[#10130e] to-[#0b0c0e] p-4">
+          <div className="flex items-start justify-between">
+            <div className="text-center">
+              <p className="text-[8px] font-medium uppercase tracking-wider text-white/30">Player</p>
+              <div className="mt-2 flex gap-1.5">
+                <div className="flex h-12 w-8 items-center justify-center rounded-md border border-white/10 bg-gradient-to-b from-white/15 to-white/3 text-[12px] font-bold text-white/70">K</div>
+                <div className="flex h-12 w-8 items-center justify-center rounded-md border border-white/10 bg-gradient-to-b from-white/15 to-white/3 text-[12px] font-bold text-[#b53333]">9</div>
               </div>
-              <p className="mt-1 text-[8px] font-bold text-white/80">9</p>
+              <p className="mt-2 text-[14px] font-bold text-white/85">9</p>
             </div>
-            <div className="flex flex-col items-center justify-center">
-              <div className="rounded-full bg-[#c9a24a]/10 px-2 py-0.5 text-[6px] font-bold text-[#c9a24a]">VS</div>
+            <div className="flex flex-col items-center justify-center pt-6">
+              <div className="rounded-full border border-[#c9a24a]/20 bg-[#c9a24a]/8 px-3 py-1 text-[9px] font-bold text-[#c9a24a]">VS</div>
             </div>
-            <div>
-              <p className="text-[6px] uppercase text-white/30">Banker</p>
-              <div className="mt-1 flex gap-1">
-                <div className="h-6 w-4 rounded-sm bg-gradient-to-b from-white/20 to-white/5 border border-white/10 flex items-center justify-center text-[7px] text-white/70">7</div>
-                <div className="h-6 w-4 rounded-sm bg-gradient-to-b from-white/20 to-white/5 border border-white/10 flex items-center justify-center text-[7px] text-white/70">Q</div>
+            <div className="text-center">
+              <p className="text-[8px] font-medium uppercase tracking-wider text-white/30">Banker</p>
+              <div className="mt-2 flex gap-1.5">
+                <div className="flex h-12 w-8 items-center justify-center rounded-md border border-white/10 bg-gradient-to-b from-white/15 to-white/3 text-[12px] font-bold text-white/70">7</div>
+                <div className="flex h-12 w-8 items-center justify-center rounded-md border border-white/10 bg-gradient-to-b from-white/15 to-white/3 text-[12px] font-bold text-white/70">Q</div>
               </div>
-              <p className="mt-1 text-[8px] font-bold text-white/80">7</p>
+              <p className="mt-2 text-[14px] font-bold text-white/85">7</p>
             </div>
           </div>
-          <div className="mx-auto mt-2 w-fit rounded-full bg-[#3ba78a]/15 px-3 py-0.5 text-[7px] font-bold text-[#3ba78a]">PLAYER WINS</div>
+          <div className="mx-auto mt-3 w-fit rounded-full bg-[#3ba78a]/12 px-4 py-1 text-[9px] font-bold tracking-wide text-[#3ba78a]">PLAYER WINS</div>
         </div>
 
-        {/* Bet controls */}
-        <div className="mt-3 grid grid-cols-3 gap-1.5">
+        <div className="mt-3 grid grid-cols-3 gap-2">
           {[
             { label: "Player", odds: "1:1", active: true },
             { label: "Tie", odds: "8:1", active: false },
             { label: "Banker", odds: "0.95:1", active: false },
           ].map((b) => (
-            <div key={b.label} className={`rounded-lg border p-1.5 text-center ${b.active ? "border-[#c9a24a]/30 bg-[#c9a24a]/10" : "border-white/5 bg-white/[0.02]"}`}>
-              <p className="text-[7px] font-semibold" style={{ color: b.active ? "#c9a24a" : "rgba(255,255,255,0.5)" }}>{b.label}</p>
-              <p className="text-[6px] text-white/30">{b.odds}</p>
+            <div key={b.label} className={`rounded-xl border p-2.5 text-center ${b.active ? "border-[#c9a24a]/30 bg-[#c9a24a]/8" : "border-white/[0.05] bg-white/[0.02]"}`}>
+              <p className="text-[10px] font-semibold" style={{ color: b.active ? "#c9a24a" : "rgba(255,255,255,0.45)" }}>{b.label}</p>
+              <p className="mt-0.5 text-[8px] text-white/25">{b.odds}</p>
             </div>
           ))}
         </div>
 
-        {/* Stake */}
-        <div className="mt-3 rounded-xl border border-white/5 bg-white/[0.02] p-2.5">
+        <div className="mt-3 rounded-xl border border-white/[0.05] bg-white/[0.02] p-3">
           <div className="flex items-center justify-between">
-            <p className="text-[7px] text-white/30">Your stake</p>
-            <p className="text-[10px] font-bold text-white/90">$500</p>
+            <p className="text-[9px] text-white/30">Your stake</p>
+            <p className="text-[15px] font-bold text-white/90">$500</p>
           </div>
-          <div className="mt-1.5 flex gap-1">
+          <div className="mt-2 flex gap-1.5">
             {["$100", "$250", "$500", "$1K"].map((v) => (
-              <div key={v} className={`flex-1 rounded-md py-1 text-center text-[6px] font-semibold ${v === "$500" ? "bg-[#c9a24a]/15 text-[#c9a24a]" : "bg-white/[0.03] text-white/30"}`}>{v}</div>
+              <div key={v} className={`flex-1 rounded-lg py-1.5 text-center text-[9px] font-semibold ${v === "$500" ? "bg-[#c9a24a]/12 text-[#c9a24a] border border-[#c9a24a]/20" : "bg-white/[0.03] text-white/25 border border-transparent"}`}>{v}</div>
             ))}
           </div>
         </div>
 
-        {/* Session stats */}
-        <div className="mt-3 grid grid-cols-3 gap-1.5">
+        <div className="mt-3 grid grid-cols-3 gap-2">
           {[
             { label: "Session P/L", value: "+$1,240", color: "#3ba78a" },
             { label: "Win rate", value: "62%", color: "#c9a24a" },
-            { label: "Hands", value: "18", color: "rgba(255,255,255,0.6)" },
+            { label: "Hands", value: "18", color: "rgba(255,255,255,0.55)" },
           ].map((s) => (
-            <div key={s.label} className="rounded-lg bg-white/[0.02] p-1.5 text-center">
-              <p className="text-[5px] uppercase text-white/25">{s.label}</p>
-              <p className="mt-0.5 text-[9px] font-bold" style={{ color: s.color }}>{s.value}</p>
-            </div>
-          ))}
-        </div>
-
-        {/* Bottom nav */}
-        <div className="mt-3 flex justify-around rounded-xl bg-white/[0.03] px-2 py-1.5">
-          {["Home", "Games", "Wallet", "VIP"].map((n, i) => (
-            <div key={n} className="flex flex-col items-center gap-0.5">
-              <div className="h-2.5 w-2.5 rounded-sm" style={{ background: i === 1 ? "#c9a24a" : "rgba(255,255,255,0.1)" }} />
-              <span className="text-[5px]" style={{ color: i === 1 ? "#c9a24a" : "rgba(255,255,255,0.3)" }}>{n}</span>
+            <div key={s.label} className="rounded-xl border border-white/[0.04] bg-white/[0.02] p-2 text-center">
+              <p className="text-[7px] font-medium uppercase tracking-wider text-white/20">{s.label}</p>
+              <p className="mt-1 text-[13px] font-bold" style={{ color: s.color }}>{s.value}</p>
             </div>
           ))}
         </div>
       </div>
+      <BottomNav active={1} />
     </IPhoneFrame>
   );
 }
@@ -550,77 +578,68 @@ function PhoneGameSession() {
 function PhoneVIP() {
   return (
     <IPhoneFrame>
-      <div className="px-3 pb-4 pt-8" style={{ minHeight: 420 }}>
-        {/* Status bar */}
-        <div className="mb-3 flex items-center justify-between text-[7px] text-white/40">
-          <span>9:41</span>
-          <div className="flex items-center gap-1 rounded-full bg-[#c9a24a]/10 px-1.5 py-0.5 text-[6px] text-[#c9a24a]">◆ Gold</div>
-        </div>
-
-        {/* VIP header */}
+      <StatusBar right={<span className="flex items-center gap-1 rounded-full border border-[#c9a24a]/20 bg-[#c9a24a]/8 px-2.5 py-0.5 text-[9px] font-bold text-[#c9a24a]">◆ Gold</span>} />
+      <div className="px-4 pb-3">
         <div className="text-center">
-          <div className="mx-auto h-10 w-10 rounded-full bg-gradient-to-br from-[#c9a24a]/30 to-[#8e6c30]/20 border border-[#c9a24a]/20 flex items-center justify-center">
-            <span className="text-[12px]">♛</span>
+          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full border border-[#c9a24a]/20 bg-gradient-to-br from-[#c9a24a]/25 to-[#8e6c30]/15">
+            <span className="text-[20px]">♛</span>
           </div>
-          <p className="mt-1.5 text-[10px] font-semibold text-white/90">Gold Member</p>
-          <p className="text-[7px] text-white/30">Level 24 · 8,420 XP</p>
+          <p className="mt-2 text-[14px] font-semibold text-white/90">Gold Member</p>
+          <p className="text-[9px] text-white/30">Level 24 · 8,420 XP</p>
         </div>
 
-        {/* Progress to next tier */}
-        <div className="mt-3 rounded-xl border border-[#c9a24a]/15 bg-[#c9a24a]/5 p-2.5">
-          <div className="flex items-center justify-between text-[7px]">
+        <div className="mt-4 rounded-2xl border border-[#c9a24a]/12 bg-[#c9a24a]/4 p-3.5">
+          <div className="flex items-center justify-between text-[9px] font-medium">
             <span className="text-[#c9a24a]">Gold</span>
-            <span className="text-white/40">Platinum</span>
+            <span className="text-white/35">Platinum</span>
           </div>
-          <div className="mt-1.5 h-2 overflow-hidden rounded-full bg-white/5">
+          <div className="mt-2 h-2.5 overflow-hidden rounded-full bg-white/[0.06]">
             <div className="h-full w-[68%] rounded-full bg-gradient-to-r from-[#c9a24a] to-[#e7c983]" />
           </div>
-          <p className="mt-1 text-center text-[6px] text-white/30">3,580 XP to Platinum</p>
+          <p className="mt-1.5 text-center text-[8px] text-white/25">3,580 XP to next tier</p>
         </div>
 
-        {/* Multipliers */}
-        <div className="mt-3 grid grid-cols-2 gap-1.5">
-          <div className="rounded-lg border border-white/5 bg-white/[0.02] p-2 text-center">
-            <p className="text-[6px] uppercase text-white/25">Reward multiplier</p>
-            <p className="text-[12px] font-bold text-[#c9a24a]">2.4×</p>
+        <div className="mt-3 grid grid-cols-2 gap-2">
+          <div className="rounded-xl border border-white/[0.05] bg-white/[0.02] p-3 text-center">
+            <p className="text-[8px] font-medium uppercase tracking-wider text-white/20">Multiplier</p>
+            <p className="mt-1 text-[18px] font-bold text-[#c9a24a]">2.4×</p>
           </div>
-          <div className="rounded-lg border border-white/5 bg-white/[0.02] p-2 text-center">
-            <p className="text-[6px] uppercase text-white/25">Weekly bonus</p>
-            <p className="text-[12px] font-bold text-[#3ba78a]">$120</p>
+          <div className="rounded-xl border border-white/[0.05] bg-white/[0.02] p-3 text-center">
+            <p className="text-[8px] font-medium uppercase tracking-wider text-white/20">Weekly</p>
+            <p className="mt-1 text-[18px] font-bold text-[#3ba78a]">$120</p>
           </div>
         </div>
 
-        {/* Rewards feed */}
-        <p className="mt-3 text-[8px] font-semibold text-white/50">Recent rewards</p>
+        <p className="mt-4 text-[10px] font-semibold text-white/45">Recent rewards</p>
         {[
           { label: "Streak bonus (7 days)", amount: "+$45", time: "2h ago", color: "#c9a24a" },
           { label: "Weekly tier reward", amount: "+$120", time: "1d ago", color: "#3ba78a" },
           { label: "Session milestone", amount: "+250 XP", time: "2d ago", color: "#e7c983" },
           { label: "Random bonus drop", amount: "+$18", time: "3d ago", color: "#b53333" },
         ].map((r) => (
-          <div key={r.label} className="mt-1.5 flex items-center justify-between rounded-lg bg-white/[0.02] px-2 py-1.5 border border-white/[0.04]">
-            <div className="flex items-center gap-1.5">
-              <div className="h-3 w-0.5 rounded-full" style={{ background: r.color }} />
+          <div key={r.label} className="mt-2 flex items-center justify-between rounded-xl border border-white/[0.05] bg-white/[0.02] px-3 py-2.5">
+            <div className="flex items-center gap-2">
+              <div className="h-6 w-1 rounded-full" style={{ background: r.color }} />
               <div>
-                <p className="text-[7px] text-white/70">{r.label}</p>
-                <p className="text-[5px] text-white/25">{r.time}</p>
+                <p className="text-[9px] font-medium text-white/65">{r.label}</p>
+                <p className="text-[7px] text-white/20">{r.time}</p>
               </div>
             </div>
-            <p className="text-[7px] font-bold" style={{ color: r.color }}>{r.amount}</p>
+            <p className="text-[10px] font-bold" style={{ color: r.color }}>{r.amount}</p>
           </div>
         ))}
 
-        {/* Perks */}
-        <p className="mt-3 text-[8px] font-semibold text-white/50">Gold perks</p>
-        <div className="mt-1 grid grid-cols-2 gap-1">
+        <p className="mt-4 text-[10px] font-semibold text-white/45">Gold perks</p>
+        <div className="mt-2 grid grid-cols-2 gap-1.5">
           {["Priority withdrawals", "Dedicated host", "Higher limits", "Exclusive tables"].map((p) => (
-            <div key={p} className="flex items-center gap-1 rounded-md bg-white/[0.02] px-1.5 py-1">
-              <span className="text-[6px] text-[#c9a24a]">✓</span>
-              <span className="text-[5px] text-white/40">{p}</span>
+            <div key={p} className="flex items-center gap-1.5 rounded-lg border border-white/[0.04] bg-white/[0.02] px-2.5 py-2">
+              <span className="text-[9px] text-[#c9a24a]">✓</span>
+              <span className="text-[8px] text-white/35">{p}</span>
             </div>
           ))}
         </div>
       </div>
+      <BottomNav active={3} />
     </IPhoneFrame>
   );
 }
