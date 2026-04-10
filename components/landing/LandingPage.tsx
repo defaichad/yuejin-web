@@ -453,6 +453,156 @@ function GamificationSection() {
   );
 }
 
+/* ─────────────────────── TOKENOMICS ─────────────────────── */
+
+type TokenSeg = { label: string; pct: number; color: string };
+
+const tokenAllocation: TokenSeg[] = [
+  { label: "Liquidity Pool (LP)", pct: 30, color: "#c9a24a" },
+  { label: "Private Sale", pct: 30, color: "#b53333" },
+  { label: "Team", pct: 20, color: "#3ba78a" },
+  { label: "Marketing", pct: 10, color: "#e7c983" },
+  { label: "Ecosystem / Treasury", pct: 10, color: "#6f6b64" },
+];
+
+const saleAllocation: TokenSeg[] = [
+  { label: "Liquidity Pool", pct: 30, color: "#c9a24a" },
+  { label: "Development Cost", pct: 30, color: "#b53333" },
+  { label: "Licences", pct: 20, color: "#3ba78a" },
+  { label: "Marketing", pct: 20, color: "#e7c983" },
+];
+
+function TokenDonut({
+  segments,
+  size = 180,
+  label,
+}: {
+  segments: TokenSeg[];
+  size?: number;
+  label?: string;
+}) {
+  const R = 62;
+  const C = 2 * Math.PI * R;
+  let offset = 0;
+
+  return (
+    <svg width={size} height={size} viewBox="0 0 180 180" className="mx-auto block">
+      {segments.map((seg) => {
+        const dash = (seg.pct / 100) * C;
+        const gap = C - dash;
+        const o = offset;
+        offset += dash;
+        return (
+          <circle
+            key={seg.label}
+            cx="90"
+            cy="90"
+            r={R}
+            fill="none"
+            stroke={seg.color}
+            strokeWidth="24"
+            strokeDasharray={`${dash.toFixed(2)} ${gap.toFixed(2)}`}
+            strokeDashoffset={-o}
+            strokeLinecap="butt"
+            style={{ transform: "rotate(-90deg)", transformOrigin: "center" }}
+          />
+        );
+      })}
+      <circle cx="90" cy="90" r="47" fill="#060708" />
+      {label && (
+        <text x="90" y="95" textAnchor="middle" fill="#c9a24a" style={{ fontSize: 12, fontWeight: 600 }}>
+          {label}
+        </text>
+      )}
+    </svg>
+  );
+}
+
+function TokenomicsSection() {
+  return (
+    <section id="tokenomics" className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8">
+      <motion.div {...fadeUp} className="mb-10">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-aurix-gold/80">
+          Tokenomics
+        </p>
+        <h2 className="mt-3 font-display text-3xl font-semibold text-aurix-text sm:text-4xl">
+          $YUEJIN — <span className="text-gradient-gold">100,000,000</span> tokens
+        </h2>
+        <p className="mt-3 max-w-2xl text-sm text-aurix-muted">
+          Fixed supply. No inflation. Token utility spans platform fees, VIP staking,
+          governance rights, and reward redemption.
+        </p>
+      </motion.div>
+
+      <div className="grid gap-6 lg:grid-cols-2">
+        {/* Token allocation */}
+        <motion.div {...stagger(0)} className="glass-panel rounded-2xl p-6">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-aurix-faint">
+            Token allocation
+          </p>
+          <div className="mt-6">
+            <TokenDonut segments={tokenAllocation} label="100M" />
+          </div>
+          <div className="mt-6 space-y-3">
+            {tokenAllocation.map((s) => (
+              <div key={s.label}>
+                <div className="mb-1 flex items-center justify-between text-sm">
+                  <span className="flex items-center gap-2 text-aurix-muted">
+                    <span className="h-2.5 w-2.5 shrink-0 rounded-sm" style={{ background: s.color }} />
+                    {s.label}
+                  </span>
+                  <span className="font-display font-semibold text-aurix-text">{s.pct}%</span>
+                </div>
+                <div className="h-1.5 overflow-hidden rounded-full bg-aurix-surface">
+                  <div className="h-1.5 rounded-full" style={{ width: `${s.pct}%`, background: s.color }} />
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="mt-6 grid grid-cols-2 gap-3">
+            <div className="rounded-xl border border-aurix-border/50 bg-aurix-void/60 p-3 text-center">
+              <p className="text-[10px] uppercase tracking-wider text-aurix-faint">Ticker</p>
+              <p className="mt-1 font-display text-lg font-bold text-aurix-gold">$YUEJIN</p>
+            </div>
+            <div className="rounded-xl border border-aurix-border/50 bg-aurix-void/60 p-3 text-center">
+              <p className="text-[10px] uppercase tracking-wider text-aurix-faint">Supply</p>
+              <p className="mt-1 font-display text-lg font-bold text-aurix-text">100,000,000</p>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Sale proceeds allocation */}
+        <motion.div {...stagger(1)} className="glass-panel rounded-2xl p-6">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-aurix-faint">
+            Sale proceeds allocation
+          </p>
+          <div className="mt-6">
+            <TokenDonut segments={saleAllocation} label="Funds" />
+          </div>
+          <div className="mt-6 space-y-4">
+            {[
+              { seg: saleAllocation[0], desc: "Deep DEX liquidity from day one — tight spreads and member confidence." },
+              { seg: saleAllocation[1], desc: "Core platform engineering, infrastructure, and security audits." },
+              { seg: saleAllocation[2], desc: "Regulatory licensing, legal structuring, and KYC/AML tooling." },
+              { seg: saleAllocation[3], desc: "Brand launch, community growth, and strategic acquisition campaigns." },
+            ].map(({ seg, desc }) => (
+              <div key={seg.label} className="rounded-xl border border-aurix-border/40 bg-aurix-void/40 p-3">
+                <div className="flex items-center gap-2">
+                  <span className="h-2.5 w-2.5 shrink-0 rounded-sm" style={{ background: seg.color }} />
+                  <span className="text-sm font-semibold text-aurix-text">
+                    {seg.label} — {seg.pct}%
+                  </span>
+                </div>
+                <p className="mt-1 text-xs text-aurix-muted">{desc}</p>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
 /* ─────────────────────── WHY YUEJIN ─────────────────────── */
 
 const advantages = [
@@ -693,6 +843,7 @@ export function LandingPage() {
         <TrustSection />
         <ProductSection />
         <GamificationSection />
+        <TokenomicsSection />
         <WhySection />
         <InvestorSection />
         <CtaSection />

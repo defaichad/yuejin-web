@@ -8,7 +8,7 @@ const nav = [
   { href: "#trust", label: "Trust" },
   { href: "#product", label: "Product" },
   { href: "#gamification", label: "Progression" },
-  { href: "#why", label: "Why YUEJIN" },
+  { href: "#tokenomics", label: "$YUEJIN" },
   { href: "#raise", label: "Investor" },
 ];
 
