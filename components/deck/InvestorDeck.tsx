@@ -688,16 +688,19 @@ function CoverSlide() {
           transparency, and intelligent progression.
         </p>
 
-        {/* Phone mockups */}
-        <div className="mt-10 flex items-end justify-center gap-6 sm:gap-10">
-          <div className="hidden -rotate-6 scale-[0.85] opacity-70 sm:block">
+        {/* Phone hero — stacked perspective fan */}
+        <div className="relative mx-auto mt-12 h-[480px] w-[340px] sm:h-[520px] sm:w-[500px]" style={{ perspective: "1200px" }}>
+          {/* Back left — VIP */}
+          <div className="absolute left-0 top-4 hidden origin-right sm:block" style={{ transform: "translateX(-60px) rotateY(18deg) scale(0.82)", opacity: 0.55, zIndex: 1 }}>
             <PhoneVIP />
           </div>
-          <div className="scale-[0.95]">
-            <PhoneDashboard />
-          </div>
-          <div className="hidden rotate-6 scale-[0.85] opacity-70 sm:block">
+          {/* Back right — Game */}
+          <div className="absolute right-0 top-4 hidden origin-left sm:block" style={{ transform: "translateX(60px) rotateY(-18deg) scale(0.82)", opacity: 0.55, zIndex: 1 }}>
             <PhoneGameSession />
+          </div>
+          {/* Front center — Dashboard (hero) */}
+          <div className="absolute left-1/2 top-0 -translate-x-1/2" style={{ zIndex: 10 }}>
+            <PhoneDashboard />
           </div>
         </div>
 
