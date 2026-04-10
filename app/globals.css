@@ -1,26 +1,105 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --aurix-void: #060708;
+  --aurix-charcoal: #101214;
+  --aurix-surface: #15181c;
+  --aurix-surface-2: #1b1f24;
+  --aurix-border: rgba(201, 162, 74, 0.2);
+  --aurix-gold: #c9a24a;
+  --aurix-gold-soft: #e7c983;
+  --aurix-red: #8f1f1f;
+  --aurix-red-mid: #b53333;
+  --aurix-text: #e8d9bb;
+  --aurix-muted: #b39f7a;
+  --aurix-faint: #7e6843;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-aurix-void: var(--aurix-void);
+  --color-aurix-charcoal: var(--aurix-charcoal);
+  --color-aurix-surface: var(--aurix-surface);
+  --color-aurix-surface-2: var(--aurix-surface-2);
+  --color-aurix-border: var(--aurix-border);
+  --color-aurix-gold: var(--aurix-gold);
+  --color-aurix-gold-soft: var(--aurix-gold-soft);
+  --color-aurix-red: var(--aurix-red);
+  --color-aurix-red-mid: var(--aurix-red-mid);
+  --color-aurix-text: var(--aurix-text);
+  --color-aurix-muted: var(--aurix-muted);
+  --color-aurix-faint: var(--aurix-faint);
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--aurix-void);
+  color: var(--aurix-text);
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+.bg-aurix-canvas {
+  background: radial-gradient(circle at 18% 16%, rgba(181, 52, 52, 0.1), transparent 24%),
+    radial-gradient(circle at 80% 0%, rgba(201, 162, 74, 0.22), transparent 33%),
+    radial-gradient(circle at 40% 100%, rgba(201, 162, 74, 0.08), transparent 34%),
+    linear-gradient(165deg, #060708 0%, #130b0b 48%, #060708 100%);
+}
+
+.glass-panel {
+  border: 1px solid rgba(201, 162, 74, 0.16);
+  background: linear-gradient(160deg, rgba(27, 22, 21, 0.8), rgba(16, 14, 13, 0.62));
+  backdrop-filter: blur(14px);
+}
+
+.text-gradient-gold {
+  background: linear-gradient(120deg, #f4dfad 0%, #c9a24a 45%, #8f6d2d 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.gold-glow {
+  box-shadow:
+    0 0 0 1px rgba(201, 162, 74, 0.24),
+    0 0 26px rgba(201, 162, 74, 0.2),
+    0 0 52px rgba(181, 52, 52, 0.12);
+}
+
+@keyframes float-y {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes shimmer {
+  0%,
+  100% {
+    background-position: 200% 50%;
+  }
+  50% {
+    background-position: -20% 50%;
+  }
+}
+
+.animate-float-y {
+  animation: float-y 6s ease-in-out infinite;
+}
+
+.shimmer-line {
+  background: linear-gradient(
+    95deg,
+    rgba(201, 162, 74, 0.06) 0%,
+    rgba(201, 162, 74, 0.3) 50%,
+    rgba(201, 162, 74, 0.06) 100%
+  );
+  background-size: 230% 100%;
+  animation: shimmer 3.4s ease-in-out infinite;
 }
