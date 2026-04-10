@@ -342,35 +342,36 @@ function IconXCircle() {
 
 /* ══════════════════════ IPHONE 15 PRO MOCKUP ══════════════════════ */
 
+const PHONE_W = 260;
+const PHONE_H = 540;
+
 function IPhoneFrame({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
-    <div className={`relative mx-auto ${className}`} style={{ width: 280 }}>
+    <div className={`relative mx-auto ${className}`} style={{ width: PHONE_W, height: PHONE_H }}>
       <div className="absolute -inset-6 rounded-[52px] bg-aurix-gold/5 blur-3xl" />
-      <div className="relative overflow-hidden rounded-[44px] bg-[#1a1a1c] p-[3px] shadow-[0_0_0_1px_rgba(255,255,255,0.08),0_20px_60px_-10px_rgba(0,0,0,0.7),0_0_40px_-5px_rgba(201,162,74,0.12)]">
-        {/* Titanium frame highlight */}
+      <div className="relative h-full overflow-hidden rounded-[44px] bg-[#1a1a1c] p-[3px] shadow-[0_0_0_1px_rgba(255,255,255,0.08),0_20px_60px_-10px_rgba(0,0,0,0.7),0_0_40px_-5px_rgba(201,162,74,0.12)]">
         <div className="pointer-events-none absolute inset-0 rounded-[44px] bg-gradient-to-b from-white/[0.08] via-transparent to-white/[0.03]" />
 
-        {/* Side buttons — left */}
-        <div className="absolute -left-[2px] top-[90px] h-[28px] w-[3px] rounded-l-sm bg-[#2a2a2d]" />
-        <div className="absolute -left-[2px] top-[130px] h-[48px] w-[3px] rounded-l-sm bg-[#2a2a2d]" />
-        <div className="absolute -left-[2px] top-[185px] h-[48px] w-[3px] rounded-l-sm bg-[#2a2a2d]" />
-        {/* Side button — right */}
-        <div className="absolute -right-[2px] top-[140px] h-[62px] w-[3px] rounded-r-sm bg-[#2a2a2d]" />
+        {/* Side buttons */}
+        <div className="absolute -left-[2px] top-[80px] h-[24px] w-[3px] rounded-l-sm bg-[#2a2a2d]" />
+        <div className="absolute -left-[2px] top-[115px] h-[42px] w-[3px] rounded-l-sm bg-[#2a2a2d]" />
+        <div className="absolute -left-[2px] top-[165px] h-[42px] w-[3px] rounded-l-sm bg-[#2a2a2d]" />
+        <div className="absolute -right-[2px] top-[125px] h-[56px] w-[3px] rounded-r-sm bg-[#2a2a2d]" />
 
-        <div className="relative overflow-hidden rounded-[41px] bg-[#000000]">
+        <div className="relative flex h-full flex-col overflow-hidden rounded-[41px] bg-[#000000]">
           {/* Dynamic Island */}
-          <div className="absolute left-1/2 top-[10px] z-30 h-[28px] w-[100px] -translate-x-1/2 rounded-full bg-[#000000] shadow-[0_0_0_1px_rgba(255,255,255,0.04)]">
-            <div className="absolute right-[18px] top-[9px] h-[10px] w-[10px] rounded-full bg-[#0c0c0e] shadow-[inset_0_0_2px_rgba(255,255,255,0.06)]" />
+          <div className="absolute left-1/2 top-[8px] z-30 h-[24px] w-[88px] -translate-x-1/2 rounded-full bg-[#000000] shadow-[0_0_0_1px_rgba(255,255,255,0.04)]">
+            <div className="absolute right-[16px] top-[7px] h-[10px] w-[10px] rounded-full bg-[#0c0c0e] shadow-[inset_0_0_2px_rgba(255,255,255,0.06)]" />
           </div>
 
-          {/* Screen content */}
-          <div className="relative">
+          {/* Screen — fixed height, clips overflow */}
+          <div className="relative min-h-0 flex-1 overflow-hidden">
             {children}
           </div>
 
           {/* Home indicator */}
-          <div className="flex justify-center pb-2 pt-1">
-            <div className="h-[4px] w-[100px] rounded-full bg-white/20" />
+          <div className="flex shrink-0 justify-center pb-2 pt-1">
+            <div className="h-[4px] w-[90px] rounded-full bg-white/20" />
           </div>
         </div>
       </div>
@@ -380,8 +381,8 @@ function IPhoneFrame({ children, className = "" }: { children: React.ReactNode; 
 
 function StatusBar({ right }: { right?: React.ReactNode }) {
   return (
-    <div className="flex items-center justify-between px-6 pb-1 pt-[42px]">
-      <span className="text-[11px] font-semibold text-white/80">9:41</span>
+    <div className="flex items-center justify-between px-5 pb-1 pt-[38px]">
+      <span className="text-[10px] font-semibold text-white/80">9:41</span>
       <div className="flex items-center gap-1.5">
         {right || (
           <>
@@ -416,7 +417,7 @@ function BottomNav({ active = 0 }: { active?: number }) {
     { label: "VIP", icon: <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2L11.1 6.3L16 7L12.5 10.4L13.3 15.2L9 12.9L4.7 15.2L5.5 10.4L2 7L6.9 6.3L9 2Z" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg> },
   ];
   return (
-    <div className="mx-3 mb-1 flex justify-around rounded-2xl bg-white/[0.04] px-1 py-2 border border-white/[0.04]">
+    <div className="mx-3 mb-1 flex justify-around rounded-2xl bg-white/[0.04] px-1 py-1.5 border border-white/[0.04]">
       {items.map((item, i) => (
         <div key={item.label} className="flex flex-col items-center gap-0.5" style={{ color: i === active ? "#c9a24a" : "rgba(255,255,255,0.25)" }}>
           {item.icon}
@@ -689,17 +690,17 @@ function CoverSlide() {
         </p>
 
         {/* Phone hero — stacked perspective fan */}
-        <div className="relative mx-auto mt-12 h-[480px] w-[340px] sm:h-[520px] sm:w-[500px]" style={{ perspective: "1200px" }}>
+        <div className="relative mx-auto mt-10 flex items-start justify-center" style={{ perspective: "1200px", height: PHONE_H + 20 }}>
           {/* Back left — VIP */}
-          <div className="absolute left-0 top-4 hidden origin-right sm:block" style={{ transform: "translateX(-60px) rotateY(18deg) scale(0.82)", opacity: 0.55, zIndex: 1 }}>
+          <div className="absolute hidden sm:block" style={{ left: "50%", transform: "translateX(-280px) rotateY(22deg) scale(0.78)", opacity: 0.5, zIndex: 1, transformOrigin: "right center" }}>
             <PhoneVIP />
           </div>
           {/* Back right — Game */}
-          <div className="absolute right-0 top-4 hidden origin-left sm:block" style={{ transform: "translateX(60px) rotateY(-18deg) scale(0.82)", opacity: 0.55, zIndex: 1 }}>
+          <div className="absolute hidden sm:block" style={{ left: "50%", transform: "translateX(20px) rotateY(-22deg) scale(0.78)", opacity: 0.5, zIndex: 1, transformOrigin: "left center" }}>
             <PhoneGameSession />
           </div>
           {/* Front center — Dashboard (hero) */}
-          <div className="absolute left-1/2 top-0 -translate-x-1/2" style={{ zIndex: 10 }}>
+          <div className="relative" style={{ zIndex: 10 }}>
             <PhoneDashboard />
           </div>
         </div>
